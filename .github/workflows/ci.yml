@@ -1,0 +1,29 @@
+name: Performance
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  performance:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Instalar k6
+        uses: grafana/setup-k6-action@v1
+
+      # El runner levanta el SUT, corre k6 y lo apaga (todo dentro del script).
+      # Los thresholds actúan como gate: si el p95 supera el SLO, el job falla.
+      - name: Smoke de performance
+        run: node scripts/run.mjs scenarios/smoke.js
+
+      - name: Load test (gate de SLO)
+        run: node scripts/run.mjs scenarios/load.js

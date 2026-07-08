@@ -1,0 +1,7 @@
+node_modules/
+*.log
+.DS_Store
+
+# Resultados/exportaciones de k6
+summary.json
+*.k6-results.json

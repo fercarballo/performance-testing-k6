@@ -1,0 +1,16 @@
+{
+  "name": "performance-testing-k6",
+  "version": "1.0.0",
+  "description": "Performance & load testing con k6 sobre un servicio bajo prueba local.",
+  "author": "Fernando Carballo",
+  "license": "MIT",
+  "scripts": {
+    "start": "node service/server.mjs",
+    "test:smoke": "node scripts/run.mjs scenarios/smoke.js",
+    "test:load": "node scripts/run.mjs scenarios/load.js",
+    "test:stress": "node scripts/run.mjs scenarios/stress.js",
+    "test:spike": "node scripts/run.mjs scenarios/spike.js",
+    "test:soak": "node scripts/run.mjs scenarios/soak.js"
+  },
+  "keywords": ["k6", "performance-testing", "load-testing", "qa-automation", "sdet"]
+}
